@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class JpaManager {
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("onibank");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("gaikujin");
 	
 	
 	public static EntityManager getConnection() {

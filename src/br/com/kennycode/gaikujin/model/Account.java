@@ -15,7 +15,7 @@ public class Account {
 	private String number;
 	private String bank;
 	private String agency;
-
+	
 	public Integer getId() {
 		return id;
 	}
