@@ -17,11 +17,7 @@ public class TransactionWithCategoryTest {
 
 	public static void main(String[] args) {
 
-		GenerateCategories.populateCategories(GenerateCategories.EXPENSES_TYPE);
-		GenerateCategories.populateCategories(GenerateCategories.INCOME_TYPE);
-		GenerateCategories.populateCategories(GenerateCategories.TRANSFER_TYPE);
-		GenerateCategories.populateCategories(GenerateCategories.DEFERRED_COMPENSATION_TYPE);
-		GenerateCategories.populateCategories(GenerateCategories.GENERAL_TYPE);
+		GenerateCategories.initialize();
 		
 		
 		

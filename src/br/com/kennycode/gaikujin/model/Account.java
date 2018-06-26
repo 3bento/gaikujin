@@ -1,9 +1,12 @@
 package br.com.kennycode.gaikujin.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Account {
@@ -15,6 +18,16 @@ public class Account {
 	private String number;
 	private String bank;
 	private String agency;
+	
+	// it is biredirectional "data-bind" 
+	// https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
+	// https://stackoverflow.com/questions/2584521/in-a-bidirectional-jpa-onetomany-manytoone-association-what-is-meant-by-the-in
+	/*	@OneToMany(mappedBy="Account")
+	private List<Transaction> transactions;
+
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}*/
 	
 	public Integer getId() {
 		return id;
