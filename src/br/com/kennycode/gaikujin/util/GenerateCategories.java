@@ -8,22 +8,22 @@ import br.com.kennycode.gaikujin.model.TypeCategory;
 
 public class GenerateCategories {
 
-	private static final String[] EXPENSES_TYPE = { "expenses", "Charitable Giving", "Gifts", "Automotive/Fuel",
+	public static final String[] EXPENSES_TYPE = { "expenses", "Charitable Giving", "Gifts", "Automotive/Fuel",
 			"Healthcare/Medical", "Insurance", "Office Expenses", "Services/Supplies", "Postage/Shipping", "Taxes",
 			"Other Expenses", "Check Payment", "Service Charges/Fees", "Home Improvement",
 			"Electronics/General Merchandise", "Groceries", "Pets/Pet Care", "Mortage", "Rent", "Loans", "Utilities",
 			"Cable/Satellite/Telecom", "Personal/Family", "ATM/Cash Withdraws", "Education", "Subscriptions/Renewals",
 			"Restaurants", "Entertainment/Recreation", "Travel" };
-	private static final String[] INCOME_TYPE = { "income", "Sales/Service Income", "Salary/Regular Income",
+	public static final String[] INCOME_TYPE = { "income", "Sales/Service Income", "Salary/Regular Income",
 			"Investment/Retirement Income", "Interest Income", "Other Income", "	\r\n" + "Rewards", "Deposits",
 			"Expenses Reimbursements", "Refunds/Adjustments" };
-	private static final String[] TRANSFER_TYPE = { "transfer", "Transfers", "Securities Trades", "Saving",
+	public static final String[] TRANSFER_TYPE = { "transfer", "Transfers", "Securities Trades", "Saving",
 			"Credit Card Payments" };
-	private static final String[] DEFERRED_COMPENSATION_TYPE = { "deferred_comprensation", "Retirement Contributions" };
-	private static final String[] GENERAL_TYPE = { "general", "Uncategorized" };
+	public static final String[] DEFERRED_COMPENSATION_TYPE = { "deferred_comprensation", "Retirement Contributions" };
+	public static final String[] GENERAL_TYPE = { "general", "Uncategorized" };
 
 	public static void main(String[] args) {
-
+		initialize();
 	}
 
 	public static void initialize() {

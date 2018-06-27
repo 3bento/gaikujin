@@ -12,5 +12,8 @@ public class GenerateDatabase {
 		GenerateAccounts.initialize();
 		GenerateCategories.initialize();
 		GenerateTransactions.initialize();
+		// TODO - How many records is it doing?
+		// TODO - USE LOGS (debug) to show quantity of inserts
+		// TODO - How long is it take to insert 1.000.000 of each entity?
 	}
 }

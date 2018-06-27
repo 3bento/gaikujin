@@ -1,7 +1,9 @@
 package br.com.kennycode.gaikujin.util;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -9,7 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.kennycode.gaikujin.model.Account;
+import br.com.kennycode.gaikujin.model.Category;
 import br.com.kennycode.gaikujin.model.Transaction;
+import br.com.kennycode.gaikujin.model.TypeCategory;
 import br.com.kennycode.gaikujin.model.TypeTransaction;
 
 public class GenerateTransactions {
@@ -17,6 +21,8 @@ public class GenerateTransactions {
 	private static int NUMBER_OF_TRANSACTIONS = 100;
 
 	public static void main(String[] args) {
+		// create category first because the transaction need to use it .
+		GenerateCategories.initialize();
 		initialize();
 	}
 
@@ -25,44 +31,74 @@ public class GenerateTransactions {
 		initialize(NUMBER_OF_TRANSACTIONS);
 	}
 
-	// TODO - It is kind of hard random data to generate, i will finish it later!
-	// The ideia is it! may i change it.
 	private static void initialize(int numberOfTransactions) {
 		/*
 		 * EntityManager em = JpaManager.getConnection(); em.getTransaction().begin();
 		 */
+		for (int i = 0; i <= numberOfTransactions; i++) {
+			EntityManager em = JpaManager.getConnection();
+			em.getTransaction().begin();
 
+			Transaction t = new Transaction();
+			Random rand = new Random();
+			// CATEGORY BY TYPE
+			// get random number 1-5 to type of category
+			// get random number 1-max of that specific type.
+			// set list with 1 or more categories
+			// try to get that category in database, if there is not result try again.
+			t.setCategories(getRandomCategoriesByType());
+
+			// RANDOM ACCOUNT (OKAY)
+			Account account = em.find(Account.class, randomIdFromAccounts());
+			t.setAccount(account);
+			// GENERATE RANDOM DATE (OKAY)
+			t.setDate(generateRandomDate());
+			// RANDOM (OKAY) XDDDDDDDD
+			t.setDescription("I did it!!!!");
+			// RANDOM VALUE (0-3) (OKAY)
+			int randNum = rand.nextInt(TypeTransaction.values().length);
+			t.setType(TypeTransaction.values()[randNum]);
+
+			em.persist(t);
+			
+			em.getTransaction().commit();
+			em.close();
+		}
+	}
+
+	// TODO - CHANGE IT, SOON as POSSIBLE.
+	// Actual behavior: It is temporary, it will create duplicate category (not good).
+	// Expected behavior: get the size of categories and get random number with it, and get one category from database.
+	private static List<Category> getRandomCategoriesByType() {
+		Random rand = new Random();
+		int randNum = 0;
+		
+		// GET ALL CATEGORIES BY ONE TYPE!!!
+		TypeCategory type = TypeCategory.values()[rand.nextInt(5)];		
 		EntityManager em = JpaManager.getConnection();
 		em.getTransaction().begin();
-
-		Transaction t = new Transaction();
-		Random rand = new Random();
-
-		// CATEGORY BY TYPE
-		// get random number 1-5 to type of category
-		// get random number 1-max of that specific type.
-		// set list with 1 or more categories
-		// try to get that category in database, if there is not result try again.
-
-		// RANDOM ACCOUNT (OKAY)
-		Account account = em.find(Account.class, randomIdFromAccounts());
-		t.setAccount(account);
-		// GENERATE RANDOM DATE (OKAY)
-		t.setDate(generateRandomDate());
-		// RANDOM (OKAY) XDDDDDDDD
-		t.setDescription("I did it!!!!");
-		// RANDOM VALUE (0-3) (OKAY)
-		int type = rand.nextInt(TypeTransaction.values().length - 1);
-		t.setType(TypeTransaction.values()[type]);
-
-		System.out.println(t.toString());
-
+		String jpql = "select c from Category c where c.type=:pType";
+		Query query = em.createQuery(jpql).setParameter("pType", type);
+		int qtdRows = query.getResultList().size();
 		em.getTransaction().commit();
 		em.close();
 
-		/*
-		 * em.getTransaction().commit(); em.close();
-		 */
+		// GET RANDOM CATEGORIES
+		List<Category> categories = new ArrayList<Category>();
+		int categoriesToBeCreated = rand.nextInt(10)+1;
+		for (int i = 0; i <= categoriesToBeCreated; i++) {
+			
+			em = JpaManager.getConnection();
+			em.getTransaction().begin();
+			// random number based in qtdRows
+			randNum = rand.nextInt(qtdRows)+1;
+			Category category = em.find(Category.class, randNum);
+			em.getTransaction().commit();
+			em.close();
+			categories.add(category);
+			System.out.println(category.toString());
+		}
+		return categories;
 	}
 
 	private static int randomIdFromAccounts() {
