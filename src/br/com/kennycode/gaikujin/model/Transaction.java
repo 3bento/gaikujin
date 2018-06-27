@@ -26,6 +26,7 @@ public class Transaction {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar date;
 	private String description;
+
 	@ManyToOne
 	private Account account;
 	
@@ -90,7 +91,7 @@ public class Transaction {
 
 	@Override
 	public String toString() {
-		return "Transaction [id=" + id + ", value=" + value + ", type=" + type + ", date=" + date + ", description="
+		return "Transaction [id=" + id + ", value=" + value + ", type=" + type + ", date=" + date.getTime() + ", description="
 				+ description + ", account=" + account + ", categories=" + categories + "]";
 	}
 }
