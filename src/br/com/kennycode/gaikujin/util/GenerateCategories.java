@@ -22,6 +22,10 @@ public class GenerateCategories {
 	public static final String[] DEFERRED_COMPENSATION_TYPE = { "deferred_comprensation", "Retirement Contributions" };
 	public static final String[] GENERAL_TYPE = { "general", "Uncategorized" };
 
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		initialize();
 	}

@@ -1,5 +1,6 @@
 package br.com.kennycode.gaikujin.util;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,19 +20,28 @@ import br.com.kennycode.gaikujin.model.TypeTransaction;
 public class GenerateTransactions {
 
 	private static int NUMBER_OF_TRANSACTIONS = 100;
+	private static int MAX_AMOUNT_OF_MONEY = 100000;
 
+	/**
+	 * create users 
+	 * create category
+	 * create transaction
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		// create category first because the transaction need to use it .
+
+		GenerateAccounts.initialize(10);
 		GenerateCategories.initialize();
 		initialize();
+		
 	}
 
 	public static void initialize() {
-		GenerateAccounts.initialize(10);
 		initialize(NUMBER_OF_TRANSACTIONS);
 	}
 
-	private static void initialize(int numberOfTransactions) {
+	public static void initialize(int numberOfTransactions) {
 		/*
 		 * EntityManager em = JpaManager.getConnection(); em.getTransaction().begin();
 		 */
@@ -48,6 +58,10 @@ public class GenerateTransactions {
 			// try to get that category in database, if there is not result try again.
 			t.setCategories(getRandomCategoriesByType());
 
+			// I FORGOT THE VALUE !!!!!!!!!!! XDDDDD
+			BigDecimal randomValue = new BigDecimal(rand.nextInt(MAX_AMOUNT_OF_MONEY) + 1);
+			t.setValue(randomValue);
+
 			// RANDOM ACCOUNT (OKAY)
 			Account account = em.find(Account.class, randomIdFromAccounts());
 			t.setAccount(account);
@@ -60,21 +74,23 @@ public class GenerateTransactions {
 			t.setType(TypeTransaction.values()[randNum]);
 
 			em.persist(t);
-			
+
 			em.getTransaction().commit();
 			em.close();
 		}
 	}
 
 	// TODO - CHANGE IT, SOON as POSSIBLE.
-	// Actual behavior: It is temporary, it will create duplicate category (not good).
-	// Expected behavior: get the size of categories and get random number with it, and get one category from database.
+	// Actual behavior: It is temporary, it will create duplicate category (not
+	// good).
+	// Expected behavior: get the size of categories and get random number with it,
+	// and get one category from database.
 	private static List<Category> getRandomCategoriesByType() {
 		Random rand = new Random();
 		int randNum = 0;
-		
+
 		// GET ALL CATEGORIES BY ONE TYPE!!!
-		TypeCategory type = TypeCategory.values()[rand.nextInt(5)];		
+		TypeCategory type = TypeCategory.values()[rand.nextInt(5)];
 		EntityManager em = JpaManager.getConnection();
 		em.getTransaction().begin();
 		String jpql = "select c from Category c where c.type=:pType";
@@ -85,13 +101,13 @@ public class GenerateTransactions {
 
 		// GET RANDOM CATEGORIES
 		List<Category> categories = new ArrayList<Category>();
-		int categoriesToBeCreated = rand.nextInt(10)+1;
+		int categoriesToBeCreated = rand.nextInt(10) + 1;
 		for (int i = 0; i <= categoriesToBeCreated; i++) {
-			
+
 			em = JpaManager.getConnection();
 			em.getTransaction().begin();
 			// random number based in qtdRows
-			randNum = rand.nextInt(qtdRows)+1;
+			randNum = rand.nextInt(qtdRows) + 1;
 			Category category = em.find(Category.class, randNum);
 			em.getTransaction().commit();
 			em.close();

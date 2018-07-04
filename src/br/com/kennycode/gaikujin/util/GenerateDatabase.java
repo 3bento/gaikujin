@@ -9,9 +9,17 @@ public class GenerateDatabase {
 	 * @param categories
 	 */
 	public static void main(String[] categories) {
-		GenerateAccounts.initialize();
+		initialize();
+	}
+	
+	public static void initialize() {
+		
+	}
+	
+	public static void initialize(int numOfInserts) {
+		GenerateAccounts.initialize(numOfInserts);
 		GenerateCategories.initialize();
-		GenerateTransactions.initialize();
+		GenerateTransactions.initialize(numOfInserts);
 		// TODO - How many records is it doing?
 		// TODO - USE LOGS (debug) to show quantity of inserts
 		// TODO - How long is it take to insert 1.000.000 of each entity?
