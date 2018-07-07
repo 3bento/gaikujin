@@ -15,6 +15,8 @@ public class TransactionDAO {
 		this.em = em;
 	}
 
+	
+
 	public List<Double> getAverageByTypeAndDate(TypeTransaction type) {
 		//Account account = em.find(Account.class, getRandomAccountId());
 		//String jpql = "select sum(t.value) from Transaction t where t.account = :pAccount and t.type = :pType order by t.value desc";

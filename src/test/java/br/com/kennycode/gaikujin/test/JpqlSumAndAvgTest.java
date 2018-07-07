@@ -3,12 +3,10 @@ package br.com.kennycode.gaikujin.test;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.com.kennycode.gaikujin.model.Account;
 import br.com.kennycode.gaikujin.model.TypeTransaction;
 import br.com.kennycode.gaikujin.util.GenerateDatabase;
 import br.com.kennycode.gaikujin.util.JpaManager;
@@ -88,25 +86,23 @@ public class JpqlSumAndAvgTest {
 		NumberFormat n = NumberFormat.getCurrencyInstance(Locale.US);
 
 		try {
-			System.out.println(msg +"of " + type + ": " + n.format(total.longValue()));
+			System.out.println(msg +" of " + type + ": " + n.format(total.longValue()));
 		} catch (NullPointerException e) {
 			System.out.println(msg +" of " + type + ": " + n.format(0));
 		}
 	}
 
-	private static int getRandomAccountId() {
-
-		Random rand = new Random();
-		EntityManager em = JpaManager.getConnection();
-		em.getTransaction().begin();
-		// query to get all accounts
-		String jpql = "select a from Account a";
-		Query query = em.createQuery(jpql);
-		// get the size of accounts
-		int accountId = rand.nextInt(query.getResultList().size()) + 1;
-		em.getTransaction().commit();
-		em.close();
-
-		return accountId;
-	}
+	// private static int getRandomAccountId() {
+	// Random rand = new Random();
+	// EntityManager em = JpaManager.getConnection();
+	// em.getTransaction().begin();
+	// // query to get all accounts
+	// String jpql = "select a from Account a";
+	// Query query = em.createQuery(jpql);
+	// // get the size of accounts
+	// int accountId = rand.nextInt(query.getResultList().size()) + 1;
+	// em.getTransaction().commit();
+	// em.close();
+	// return accountId;
+	// }
 }
