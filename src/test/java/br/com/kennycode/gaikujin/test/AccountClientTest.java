@@ -1,14 +1,13 @@
 package br.com.kennycode.gaikujin.test;
 
-import javax.persistence.EntityManager;
-
+import br.com.kennycode.gaikujin.dao.AccountDAO;
+import br.com.kennycode.gaikujin.dao.ClientDAO;
 import br.com.kennycode.gaikujin.model.Account;
 import br.com.kennycode.gaikujin.model.Client;
 import br.com.kennycode.gaikujin.util.JpaManager;
 
 public class AccountClientTest {
 	public static void main(String[] args) {
-
 
 		Client c1 = new Client();
 		c1.setName("Kenny");
@@ -24,16 +23,14 @@ public class AccountClientTest {
 		a1.setName("Test");
 		
 		c1.setAccount(a1);
-		//c2.setAccount(a1);
 		
-		EntityManager em = JpaManager.getConnection();
-		em.getTransaction().begin();
-		em.persist(a1);
-		em.persist(c1);
-		//em.persist(c2);
+		ClientDAO clientDao = new ClientDAO(JpaManager.getConnection());
+		AccountDAO accountDao = new AccountDAO(JpaManager.getConnection());
 		
-		em.getTransaction().commit();
-		em.close();
-		
+		accountDao.create(a1);
+		c1.setAccount(a1);
+		clientDao.create(c1);
+
+		System.out.println(c1);
 	}
 }
