@@ -1,4 +1,3 @@
-
 # 1. Gaikujin business transaction.
 
 Gaikujin business transaction that project only have business classes and it will provided simple actions like create account, client, transaction and more.
