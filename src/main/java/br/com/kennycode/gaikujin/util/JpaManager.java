@@ -11,4 +11,9 @@ public class JpaManager {
 	public static EntityManager getConnection() {
 		return emf.createEntityManager();
 	}
+	
+	public static EntityManager getConnection(String unitName) {
+		emf = Persistence.createEntityManagerFactory(unitName);
+		return emf.createEntityManager();
+	}
 }

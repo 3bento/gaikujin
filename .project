@@ -15,7 +15,7 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
+		<buildCommand>cd ..
 			<name>org.eclipse.wst.validation.validationbuilder</name>
 			<arguments>
 			</arguments>

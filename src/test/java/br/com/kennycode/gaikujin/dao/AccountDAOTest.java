@@ -1,20 +1,28 @@
-package br.com.kennycode.gaikujin.test;
+package br.com.kennycode.gaikujin.dao;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
+import javax.persistence.EntityManager;
+
+import org.junit.Before;
 import org.junit.Test;
 
-import br.com.kennycode.gaikujin.dao.AccountDAO;
 import br.com.kennycode.gaikujin.model.Account;
 import br.com.kennycode.gaikujin.util.JpaManager;
 
 
 public class AccountDAOTest {
+
+    private EntityManager connection;
+
+    @Before
+    public void init() {
+    	connection = JpaManager.getConnection("gaikujin");
+    }
+
 	
 	@Test
-	public void testCreateAccount() {
-		
+	public void testCreateOneAccount() {
 		// account (transient)
 		Account account = new Account();
 		account.setName("Kenny");
@@ -26,6 +34,6 @@ public class AccountDAOTest {
 		AccountDAO dao = new AccountDAO(JpaManager.getConnection());
 		dao.create(account);
 		
-		assertNull(account.getId());
+		assertEquals(new Integer(1), account.getId());
 	}
 }

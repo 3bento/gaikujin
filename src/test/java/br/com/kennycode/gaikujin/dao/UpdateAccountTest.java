@@ -1,4 +1,4 @@
-package br.com.kennycode.gaikujin.test;
+package br.com.kennycode.gaikujin.dao;
 
 import javax.persistence.EntityManager;
 

@@ -1,4 +1,4 @@
-package br.com.kennycode.gaikujin.test;
+package br.com.kennycode.gaikujin.dao;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;

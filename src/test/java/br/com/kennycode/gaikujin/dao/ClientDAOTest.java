@@ -1,4 +1,4 @@
-package br.com.kennycode.gaikujin.test;
+package br.com.kennycode.gaikujin.dao;
 
 import br.com.kennycode.gaikujin.dao.AccountDAO;
 import br.com.kennycode.gaikujin.dao.ClientDAO;
@@ -6,7 +6,7 @@ import br.com.kennycode.gaikujin.model.Account;
 import br.com.kennycode.gaikujin.model.Client;
 import br.com.kennycode.gaikujin.util.JpaManager;
 
-public class AccountClientTest {
+public class ClientDAOTest {
 	public static void main(String[] args) {
 
 		Client c1 = new Client();
