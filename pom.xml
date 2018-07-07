@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.kennycode.gaikujin</groupId>
 	<artifactId>gaikujin</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.0.3</version>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
