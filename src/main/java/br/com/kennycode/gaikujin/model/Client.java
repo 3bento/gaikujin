@@ -15,7 +15,7 @@ public class Client {
 	private Integer id;
 	private String name;
 	private String job;
-	private String adress;
+	private String address;
 
 	@JoinColumn(unique=true)
 	@OneToOne
@@ -45,10 +45,10 @@ public class Client {
 	public void setJob(String job) {
 		this.job = job;
 	}
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String adress) {
+		this.address = adress;
 	}
 }

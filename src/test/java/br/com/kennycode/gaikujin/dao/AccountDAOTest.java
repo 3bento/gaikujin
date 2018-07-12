@@ -20,7 +20,6 @@ public class AccountDAOTest {
     	connection = JpaManager.getConnection("gaikujin");
     }
 
-	
 	@Test
 	public void testCreateOneAccount() {
 		// account (transient)

@@ -11,12 +11,12 @@ public class ClientDAOTest {
 
 		Client c1 = new Client();
 		c1.setName("Kenny");
-		c1.setAdress("T9997");
+		c1.setAddress("T9997");
 		c1.setJob("Developer Java Junior");
 		
 		Client c2 = new Client();
 		c2.setName("Milkwalk");
-		c2.setAdress("T9996");
+		c2.setAddress("T9996");
 		c2.setJob("Developer Java PLeno");
 
 		Account a1 = new Account();
