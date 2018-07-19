@@ -25,3 +25,7 @@ You don't need Shoumen, to use gaikujin as your dependent project, but it is not
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Using Jenkins
+
+:D
